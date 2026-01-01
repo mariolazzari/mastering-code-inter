@@ -6,19 +6,23 @@ const targetToFind = 11;
 const result: Result = [3, 4];
 
 describe("Arrays: two sum (Google)", () => {
-  it("Brute force: should find target", () => {
-    expect(twoSumBrute(numsArray, targetToFind)).toStrictEqual(result);
+  describe("Brute forcing", () => {
+    it("should find target", () => {
+      expect(twoSumBrute(numsArray, targetToFind)).toStrictEqual(result);
+    });
+
+    it("should return null with []", () => {
+      expect(twoSumBrute([], targetToFind)).toBeNull();
+    });
   });
 
-  it("Brute force: should return null with []", () => {
-    expect(twoSumBrute([], targetToFind)).toBeNull();
-  });
+  describe("Optimized", () => {
+    it("HashMap: should find target", () => {
+      expect(twoSum(numsArray, targetToFind)).toStrictEqual(result);
+    });
 
-  it("HashMap: should find target", () => {
-    expect(twoSum(numsArray, targetToFind)).toStrictEqual(result);
-  });
-
-  it("HashMap: should return null with []", () => {
-    expect(twoSum([], targetToFind)).toBeNull();
+    it("HashMap: should return null with []", () => {
+      expect(twoSum([], targetToFind)).toBeNull();
+    });
   });
 });
