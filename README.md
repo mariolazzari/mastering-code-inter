@@ -109,3 +109,47 @@ const mostWater: MostWater = heights => {
 ```
 
 ### Trapping Rainwater (Hard)
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
+#### Brute forcing
+
+```ts
+const getTrappedRainwaterBrute = (heights: number[]): number => {
+  let totalWater = 0;
+
+  for (let p = 0; p < heights.length; p++) {
+    let leftP = p,
+      rightP = p,
+      maxLeft = 0,
+      maxRight = 0;
+
+    while (leftP >= 0) {
+      maxLeft = Math.max(maxLeft, heights[leftP]);
+      leftP--;
+    }
+
+    while (rightP < heights.length) {
+      maxRight = Math.max(maxRight, heights[rightP]);
+      rightP++;
+    }
+
+    const currentWater = Math.min(maxLeft, maxRight) - heights[p];
+
+    if (currentWater >= 0) {
+      totalWater += currentWater;
+    }
+  }
+
+  return totalWater;
+};
+```
+
+- Time: O(n²)
+- Space: O(1)
+
+#### Optimized
+
+```ts
+
+```
