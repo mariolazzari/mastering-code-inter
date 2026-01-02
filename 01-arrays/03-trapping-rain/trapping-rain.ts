@@ -20,8 +20,38 @@ export const getTrappedRainwaterBrute = (heights: number[]): number => {
 
     const currentWater = Math.min(maxLeft, maxRight) - heights[p];
 
-    if (currentWater >= 0) {
+    if (currentWater > 0) {
       totalWater += currentWater;
+    }
+  }
+
+  return totalWater;
+};
+
+// optimized
+export const getTrappedRainwater = (heights: number[]): number => {
+  let left = 0,
+    right = heights.length - 1,
+    totalWater = 0,
+    maxLeft = 0,
+    maxRight = 0;
+
+  while (left < right) {
+    if (heights[left] <= heights[right]) {
+      if (heights[left] >= maxLeft) {
+        maxLeft = heights[left];
+      } else {
+        totalWater += maxLeft - heights[left];
+      }
+      left++;
+    } else {
+      if (heights[right] >= maxRight) {
+        maxRight = heights[right];
+      } else {
+        totalWater += maxRight - heights[right];
+      }
+
+      right--;
     }
   }
 

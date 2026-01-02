@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getTrappedRainwaterBrute } from "./trapping-rain";
+import { getTrappedRainwater, getTrappedRainwaterBrute } from "./trapping-rain";
 
 const heights1 = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
 const output1 = 6;
@@ -16,6 +16,9 @@ describe("Trapping Rainwater (Hard)", () => {
   });
 
   describe("Optimized", () => {
-    it("should compute trapping rainwater", () => {});
+    it("should compute trapping rainwater", () => {
+      expect(getTrappedRainwater(heights1)).toBe(output1);
+      expect(getTrappedRainwater(heights2)).toBe(output2);
+    });
   });
 });

@@ -136,7 +136,7 @@ const getTrappedRainwaterBrute = (heights: number[]): number => {
 
     const currentWater = Math.min(maxLeft, maxRight) - heights[p];
 
-    if (currentWater >= 0) {
+    if (currentWater > 0) {
       totalWater += currentWater;
     }
   }
@@ -150,6 +150,47 @@ const getTrappedRainwaterBrute = (heights: number[]): number => {
 
 #### Optimized
 
-```ts
+1. Identify the pointer with the lesser value
+2. Is this pointer value greater than or equal to max on that side
+   yes -> update max on that side
+   no -> get water for pointer, add to total
+3. move pointer inwards
+4. repeat for other pointer
 
+```ts
+const getTrappedRainwater = (heights: number[]): number => {
+  let left = 0,
+    right = heights.length - 1,
+    totalWater = 0,
+    maxLeft = 0,
+    maxRight = 0;
+
+  while (left < right) {
+    if (heights[left] <= heights[right]) {
+      if (heights[left] >= maxLeft) {
+        maxLeft = heights[left];
+      } else {
+        totalWater += maxLeft - heights[left];
+      }
+      left++;
+    } else {
+      if (heights[right] >= maxRight) {
+        maxRight = heights[right];
+      } else {
+        totalWater += maxRight - heights[right];
+      }
+
+      right--;
+    }
+  }
+
+  return totalWater;
+};
 ```
+
+- Time: O(n)
+- Space: O(1)
+
+## Strings
+
+###
